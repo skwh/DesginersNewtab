@@ -7,11 +7,10 @@
     "newtab": "newtab.html"
   },
   "permissions": [
-    "http://www.behance.net/",
-    "http://*.dribbble.com/",
-    "http://*.reddit.com/",
-    "http://i.imgur.com/",
-    "http://www.typewolf.com/"
+    "https://api.behance.net/",
+    "https://*.dribbble.com/",
+    "https://reddit.com/",
+    "https://ajax.googleapis.com/"
   ],
   "manifest_version": 2
 }
