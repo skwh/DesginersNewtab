@@ -1,9 +1,9 @@
 const project_types = ["Logo", "Logonym", "Front Page", "Flyer", "Poster", "Magazine Advertisment", "Banner Ad"];
-const company_names = ["Experia", "Zootax", "Apredbam", "Hextech", "Kondrill", "Kaycan", "Tempfase", "Plexin"];
-const company_types = [];
-const company_verbs = [];
-const company_adjectives = [];
-const company_nouns = [];
+const company_names = ["Experia", "Zootax", "Apredbam", "Hextech", "Kondrill", "Kaycan", "Tempfase", "Qvotechi"];
+const company_types = ["construction", "software", "design", "manufacturing", "cleaning", "hardware", "spaceflight", "commercial aviation", "retail", "pharmaceutical", "production"];
+const company_verbs = ["making", "destroying", "coding", "developing", "researching", "creating", "launching", "selling", "buying", "investing", "cleaning", "recording"];
+const company_adjectives = ["fancy", "blue", "green", "high-end", "cheap", "stylish"];
+const company_nouns = ["armchairs", "sofas", "buildings", "boxes", "websites", "logos", "lamps", "rockets", "hospitals", "drugs", "bees", "youtube videos", "dicks in a box"];
 
 function getRandom(upperBound) {
   return Math.floor(Math.random() * upperBound);
@@ -17,9 +17,11 @@ window.addEventListener("load", function() {
   setDribbbleLink();
   setRedditLink();
   setTypewolfLink();
-  setPracticeProject();
+  handleProjectUpdate();
   setSitesClickable();
   setLocalStorage();
+
+  $('#reload-button').click(reloadPages);
 });
 
 function startClock() {
@@ -28,21 +30,27 @@ function startClock() {
 }
 
 function setClock() {
-  console.log("setting clock");
   let time = new Date(Date.now());
   let timestring = "";
-  let minutes = time.getMinutes();
-  let seconds = time.getSeconds();
+  let minutes = zeroPad(time.getMinutes());
+  let seconds = zeroPad(time.getSeconds());
   let hours = time.getHours();
   let half = "AM";
   if (hours >= 12) {
     half = "PM";
     if (hours > 12) {
-      hours /= 2;
+      hours -= 12;
     }
   }
   timestring = hours + ":" + minutes + ":" + seconds + " " + half;
   $('#time').text(timestring);
+}
+
+function zeroPad(time) {
+  if (time < 10) {
+    return "0" + time;
+  }
+  return time;
 }
 
 function setLocalStorage() {
@@ -190,6 +198,40 @@ function handleSiteUpdate(site_name, site_api_url, site_data, site_callback) {
   }
 }
 
-function setPracticeProject() {
+function handleProjectUpdate() {
+  if (getUpdate()) {
+    console.log("Updating practice project...");
+    generatePracticeProject();
+  } else {
+    let practice_project_sentence = localStorage.getItem("practice-project");
+    setPracticeProject(practice_project_sentence);
+  }
+}
 
+function generatePracticeProject() {
+  let randomType = project_types[getRandom(project_types.length)];
+  let randomName = company_names[getRandom(company_names.length)];
+  let randomCompanyType = company_types[getRandom(company_types.length)];
+  let randomCompanyVerb = company_verbs[getRandom(company_verbs.length)];
+  let randomCompanyAdjective = company_adjectives[getRandom(company_adjectives.length)];
+  let randomCompanyNoun = company_nouns[getRandom(company_nouns.length)];
+  let practice_project_sentence = "Design a <span class='red'>" + randomType + "</span> for <span class='blue'>" + randomName +"</span>, a <span class='green'>" + randomCompanyType + "</span> company that specializes in " + randomCompanyVerb + " " + randomCompanyAdjective + " " + randomCompanyNoun + ".";
+  setPracticeProject(practice_project_sentence);
+  storePracticeProject(practice_project_sentence);
+}
+
+function storePracticeProject(sentence) {
+  localStorage.setItem("practice-project", sentence);
+}
+
+function setPracticeProject(sentence) {
+  $('#practice-project-description').html(sentence);
+}
+
+function reloadPages() {
+  localStorage.setItem("newtab-last-updated",0);
+  setBehanceLink();
+  setRedditLink();
+  setDribbbleLink();
+  setLocalStorage();
 }
