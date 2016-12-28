@@ -1,7 +1,7 @@
 {
   "name": "Custom New Tab Page",
   "description": "Replace the new tab page with a new, cool page. Like the Fonz.",
-  "version": "1.0",
+  "version": "1.0.1",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "newtab.html"

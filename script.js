@@ -42,6 +42,9 @@ function setClock() {
       hours -= 12;
     }
   }
+  if (hours == 0) {
+    hours = 12;
+  }
   timestring = hours + ":" + minutes + ":" + seconds + " " + half;
   $('#time').text(timestring);
 }
