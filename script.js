@@ -179,8 +179,9 @@ function setTypewolfLink() {
 function formTypewolfCoverUrl() {
   let now = new Date(Date.now());
   let year = now.getFullYear();
-  let month = now.getMonth();
-  let day = now.getDate() + 1;
+  let month = now.getMonth()+1;
+  let day = now.getDate();
+  console.log("forming typewolf url. year="+year+", month="+month+", day="+day);
   let url = "https://www.typewolf.com/assets/img/sotd/" + year + "-" + month + "-" + day + ".png";
   return url;
 }
