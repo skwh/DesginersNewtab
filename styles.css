@@ -3,7 +3,13 @@ body {
   padding:0;
   font-family:"Libre Franklin", sans-serif;
   overflow: hidden;
-  background-color: rgb(232, 232, 232);
+  color:white;
+  background: rgb(58,117,244);
+  background: -moz-linear-gradient(45deg,  rgba(58,117,244,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(255,0,0,1) 100%);
+  background: -webkit-linear-gradient(45deg,  rgba(58,117,244,1) 0%,rgba(0,0,0,1) 30%,rgba(0,0,0,1) 70%,rgba(255,0,0,1) 100%);
+  background: linear-gradient(45deg,  rgba(58,117,244,1) 0%,rgba(0,0,0,1) 30%,rgba(0,0,0,1) 70%,rgba(255,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a75f4', endColorstr='#ff0000',GradientType=1 );
+
 }
 
 h1, h2, h3, h4, h5, p {
@@ -14,6 +20,7 @@ header h1 {
   text-align: center;
   font-size:10vw;
   margin:-0.5% 0 0.5% 0;
+  letter-spacing: -0.4vw;
 }
 
 #rows-wrapper {
@@ -41,6 +48,7 @@ header h1 {
   background-color:rgba(193, 193, 193, 0.75);
   background-size: cover;
   overflow: hidden;
+  border-radius:3px;
 }
 
 #behance:hover::after, #reddit:hover::after, #dribbble:hover::after, #typewolf:hover::after {
@@ -83,7 +91,7 @@ header h1 {
 
 #time {
   font-size:5vw;
-  font-family:"Space Mono", monospace;
+  font-family:"Monaco", monospace;
 }
 
 #practice-project h2 {
@@ -102,12 +110,12 @@ header h1 {
   height:7vh;
   font-family:"Libre Franklin", sans-serif;
   font-size:2vw;
-  border:2px solid black;
+  border:2px solid white;
   margin:5%;
 }
 
 #reload-button:hover {
-  border: 2px solid rgb(232, 232, 232);
+  border: 2px solid black;
 }
 
 .hidden {
