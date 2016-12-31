@@ -170,20 +170,10 @@ function setTypewolfLink() {
     entry = JSON.parse(data).responseData.feed.entries[0];
     let post_title = entry.title;
     let post_link = entry.link;
-    let cover_url = formTypewolfCoverUrl();
+    let cover_url = entry.content.substring(entry.content.indexOf("src=\"")+5, entry.content.indexOf("alt")-2);
     setSiteLocalStorage("typewolf", cover_url, post_title, post_link);
     setSiteCover("typewolf", cover_url, post_title, post_link);
   });
-}
-
-function formTypewolfCoverUrl() {
-  let now = new Date(Date.now());
-  let year = now.getFullYear();
-  let month = now.getMonth()+1;
-  let day = now.getDate();
-  console.log("forming typewolf url. year="+year+", month="+month+", day="+day);
-  let url = "https://www.typewolf.com/assets/img/sotd/" + year + "-" + month + "-" + day + ".png";
-  return url;
 }
 
 function handleSiteUpdate(site_name, site_api_url, site_data, site_callback) {
@@ -237,5 +227,6 @@ function reloadPages() {
   setBehanceLink();
   setRedditLink();
   setDribbbleLink();
+  setTypewolfLink();
   setLocalStorage();
 }
